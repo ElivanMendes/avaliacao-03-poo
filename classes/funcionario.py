@@ -1,5 +1,5 @@
 class Funcionario:
-    def __int__(self, nome, cpf, funcao, salario, telefone):
+    def __init__(self, nome, cpf, funcao, salario, telefone):
         self.__nome = nome
         self.__cpf = cpf
         self.__funcao = funcao

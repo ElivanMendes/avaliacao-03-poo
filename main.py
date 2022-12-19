@@ -1,10 +1,12 @@
-# Função para Verificar se a Opção Digitada foi um Valor Inteiro. #
-def verificar_opc_digitada(opc):
-    try:
-        opc = int(opc)
-        return opc
-    except ValueError:
-        return -1
+from classes.validacoes import Validacoes as vl
+from classes.funcao import Funcao
+
+
+# Função que Criar uma Instância de Função. #
+def cadastrar_funcao():
+    codigo = vl.ler_cod_funcao()
+    nome = vl.ler_nome_funcao()
+    return Funcao(codigo, nome)
 
 
 # Menu de Manter Funções. #
@@ -14,13 +16,13 @@ def menu_manter_funcoes():
         print('1 - Cadastrar Função\n2 - Pesquisar Função\n3 - Editar Função')
         print('4 - Deletar Função\n0 - Voltar ao Menu Principal')
         print('================================')
-        opc = verificar_opc_digitada(input('\nInforme uma Opção: '))
+        opc = vl.verificar_opc_digitada(input('\nInforme uma Opção: '))
 
         if opc == 0:
             print('\nVOLTANDO...')
             return
         elif opc == 1:
-            pass
+            cadastrar_funcao()
         elif opc == 2:
             pass
         elif opc == 3:
@@ -38,7 +40,7 @@ def menu_manter_funcionario():
         print('1 - Cadastrar Funcionário\n2 - Pesquisar Funcionário\n3 - Editar Funcionário')
         print('4 - Deletar Funcionário\n0 - Voltar ao Menu Principal')
         print('================================')
-        opc = verificar_opc_digitada(input('\nInforme uma Opção: '))
+        opc = vl.verificar_opc_digitada(input('\nInforme uma Opção: '))
 
         if opc == 0:
             print('\nVOLTANDO...')
@@ -61,7 +63,7 @@ def menu_principal():
         print('\n======== MENU PRINCIPAL ========')
         print('1 - Manter Funções\n2 - Manter Funcionários\n0 - Sair')
         print('================================')
-        opc = verificar_opc_digitada(input('\nInforme uma Opção: '))
+        opc = vl.verificar_opc_digitada(input('\nInforme uma Opção: '))
 
         if opc == 0:
             print('\nSAINDO...')

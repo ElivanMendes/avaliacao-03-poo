@@ -1,7 +1,7 @@
 class Funcao:
-    def __int__(self, codigo, funcao):
+    def __init__(self, codigo, nome):
         self.__codigo = codigo
-        self.__funcao = funcao
+        self.__nome = nome
 
     @property
     def codigo(self):
@@ -12,9 +12,9 @@ class Funcao:
         self.__codigo = codigo
 
     @property
-    def funcao(self):
-        return self.__funcao
+    def nome(self):
+        return self.__nome
 
-    @funcao.setter
-    def funcao(self, funcao):
-        self.__funcao = funcao
+    @nome.setter
+    def nome(self, nome):
+        self.__nome = nome
