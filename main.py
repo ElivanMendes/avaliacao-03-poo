@@ -1,5 +1,6 @@
 from classes.validacoes import Validacoes as vl
 from classes.funcao import Funcao
+from conexaobd.con_funcao import ConexaoFuncao
 
 
 # Função que Criar uma Instância de Função. #
@@ -7,6 +8,14 @@ def cadastrar_funcao():
     codigo = vl.ler_cod_funcao()
     nome = vl.ler_nome_funcao()
     return Funcao(codigo, nome)
+
+
+# Função para Imprimir uma Função. #
+def imprimir_funcao(funcao):
+    print('\n==============================')
+    for i in funcao:
+        print('Código: {cod}\nFunção: {nome}'.format(cod=i['cod'], nome=i['nome']))
+    print('==============================')
 
 
 # Menu de Manter Funções. #
@@ -22,9 +31,16 @@ def menu_manter_funcoes():
             print('\nVOLTANDO...')
             return
         elif opc == 1:
-            cadastrar_funcao()
+            ConexaoFuncao.cadastrar_funcao_db(cadastrar_funcao())
+            print('\nCadastro Realizado com Sucesso.')
         elif opc == 2:
-            pass
+            funcao = ConexaoFuncao.pesquisar_funcao(vl.ler_cod_funcao())
+
+            if funcao:
+                imprimir_funcao(funcao)
+            else:
+                print('\nFunção Não Encontrada!')
+
         elif opc == 3:
             pass
         elif opc == 4:

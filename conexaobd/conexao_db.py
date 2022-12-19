@@ -7,7 +7,7 @@ def conexao_bd():
         connection = pymysql.connect(host='localhost',
                                      user='developer',
                                      password='1234567',
-                                     database='circuito',
+                                     database='prova03',
                                      cursorclass=pymysql.cursors.DictCursor)
         return connection
     except Exception as erro:
