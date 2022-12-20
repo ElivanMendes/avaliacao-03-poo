@@ -58,3 +58,17 @@ class ConexaoFuncao:
             print('Erro ao Editar Banco de Dados:', erro)
         finally:
             connection.close()
+
+    # Função para Deletar um Registro do Banco de Dados. #
+    @staticmethod
+    def deletar_funcao(codigo):
+        connection = conexao_bd()
+        try:
+            with connection.cursor() as c:
+                sql = "DELETE FROM `funcao` WHERE `cod` = %s"
+                c.execute(sql, codigo)
+            connection.commit()
+        except Exception as erro:
+            print('Erro ao Deletar Banco de Dados:', erro)
+        finally:
+            connection.close()

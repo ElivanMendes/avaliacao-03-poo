@@ -36,9 +36,9 @@ class Validacoes:
 
     # Função que Ler e Verifica o Tamanho do Código Buscado. #
     @staticmethod
-    def ler_cod_buscado():
+    def ler_cod_buscado(msg):
         while True:
-            cod = input('\nInforme o Código Buscado: ')
+            cod = input(msg)
             if len(cod) > 5:
                 print('\nInforme um Código Menor que 5 Caracteres.')
                 continue

@@ -21,7 +21,7 @@ def imprimir_funcao(funcao):
 
 # Função para Pesquisar uma Função no Banco de Dados. #
 def pesquisar_funcao():
-    funcao = ConexaoFuncao.pesquisar_funcao(vl.ler_cod_buscado())
+    funcao = ConexaoFuncao.pesquisar_funcao(vl.ler_cod_buscado('\nInforme o Código Buscado: '))
     if funcao:
         imprimir_funcao(funcao)
     else:
@@ -30,7 +30,7 @@ def pesquisar_funcao():
 
 # Função que Editar uma Função no Banco de Dados. #
 def editar_funcao():
-    codigo = vl.ler_cod_buscado()
+    codigo = vl.ler_cod_buscado('\nInforme o Código da Função a Editar: ')
     print()
     if vl.verificar_cod(codigo):
         nome = vl.ler_nome_funcao()
@@ -38,6 +38,16 @@ def editar_funcao():
         print('\nFunção Editada com Sucesso.')
     else:
         print('Código da Função Não Encontrada!')
+
+
+# Função que Deleta uma Função no Banco de Dados. #
+def deletar_funcao():
+    codigo = vl.ler_cod_buscado('\nInforme o Código da Função a Deletar: ')
+    if vl.verificar_cod(codigo):
+        ConexaoFuncao.deletar_funcao(codigo)
+        print('\nFunção Deletada com Sucesso.')
+    else:
+        print('\nCódigo da Função Não Encontrada!')
 
 
 # Menu de Manter Funções. #
@@ -59,7 +69,7 @@ def menu_manter_funcoes():
         elif opc == 3:
             editar_funcao()
         elif opc == 4:
-            pass
+            deletar_funcao()
         else:
             print('\nOpção Invalida!')
 
