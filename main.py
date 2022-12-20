@@ -65,11 +65,20 @@ def menu_manter_funcoes():
         elif opc == 1:
             cadastrar_funcao()
         elif opc == 2:
-            pesquisar_funcao()
+            if ConexaoFuncao.buscar_cod_todas_funcao():
+                pesquisar_funcao()
+            else:
+                print('\nNão há Funções Cadastradas!')
         elif opc == 3:
-            editar_funcao()
+            if ConexaoFuncao.buscar_cod_todas_funcao():
+                editar_funcao()
+            else:
+                print('\nNão há Funções Cadastradas!')
         elif opc == 4:
-            deletar_funcao()
+            if ConexaoFuncao.buscar_cod_todas_funcao():
+                deletar_funcao()
+            else:
+                print('\nNão há Funções Cadastradas!')
         else:
             print('\nOpção Invalida!')
 
