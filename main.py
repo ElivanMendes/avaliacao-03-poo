@@ -3,11 +3,12 @@ from classes.funcao import Funcao
 from conexaobd.con_funcao import ConexaoFuncao
 
 
-# Função que Criar uma Instância de Função. #
+# Função que Criar uma Instância de Função. E Cadastrar no Banco de Dados. #
 def cadastrar_funcao():
     codigo = vl.ler_cod_funcao()
     nome = vl.ler_nome_funcao()
-    return Funcao(codigo, nome)
+    ConexaoFuncao.cadastrar_funcao_db(Funcao(codigo, nome))
+    print('\nCadastro Realizado com Sucesso.')
 
 
 # Função para Imprimir uma Função. #
@@ -16,6 +17,27 @@ def imprimir_funcao(funcao):
     for i in funcao:
         print('Código: {cod}\nFunção: {nome}'.format(cod=i['cod'], nome=i['nome']))
     print('==============================')
+
+
+# Função para Pesquisar uma Função no Banco de Dados. #
+def pesquisar_funcao():
+    funcao = ConexaoFuncao.pesquisar_funcao(vl.ler_cod_buscado())
+    if funcao:
+        imprimir_funcao(funcao)
+    else:
+        print('\nFunção Não Encontrada!')
+
+
+# Função que Editar uma Função no Banco de Dados. #
+def editar_funcao():
+    codigo = vl.ler_cod_buscado()
+    print()
+    if vl.verificar_cod(codigo):
+        nome = vl.ler_nome_funcao()
+        ConexaoFuncao.editar_funcao(Funcao(codigo, nome))
+        print('\nFunção Editada com Sucesso.')
+    else:
+        print('Código da Função Não Encontrada!')
 
 
 # Menu de Manter Funções. #
@@ -31,18 +53,11 @@ def menu_manter_funcoes():
             print('\nVOLTANDO...')
             return
         elif opc == 1:
-            ConexaoFuncao.cadastrar_funcao_db(cadastrar_funcao())
-            print('\nCadastro Realizado com Sucesso.')
+            cadastrar_funcao()
         elif opc == 2:
-            funcao = ConexaoFuncao.pesquisar_funcao(vl.ler_cod_funcao())
-
-            if funcao:
-                imprimir_funcao(funcao)
-            else:
-                print('\nFunção Não Encontrada!')
-
+            pesquisar_funcao()
         elif opc == 3:
-            pass
+            editar_funcao()
         elif opc == 4:
             pass
         else:
