@@ -61,12 +61,12 @@ class ConexaoFuncionario:
 
     # Função para Editar um Funcionário no Banco de Dados. #
     @staticmethod
-    def editar_funcionario(id, func):
+    def editar_funcionario(func):
         connection = conexao_bd()
         try:
             with connection.cursor() as c:
-                sql = "UPDATE `funcionario` SET `cpf` = %s, `nome` = %s, `funcao` = %s, `salario` = %s, `telefone` = %s WHERE `id` = %s"
-                c.execute(sql, (func.cpf, func.nome, func.funcao, func.salario, func.telefone, id))
+                sql = "UPDATE `funcionario` SET `nome` = %s, `funcao` = %s, `salario` = %s, `telefone` = %s WHERE `cpf` = %s"
+                c.execute(sql, (func.nome, func.funcao, func.salario, func.telefone, func.cpf))
             connection.commit()
         except Exception as erro:
             print('Erro ao Editar Banco de Dados:', erro)

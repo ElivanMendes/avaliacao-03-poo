@@ -34,10 +34,8 @@ def editar_funcao():
     codigo = vl.ler_cod_buscado('\nInforme o Código da Função a Editar: ')
     print()
     if vl.verificar_cod(codigo):
-        id = ConexaoFuncao.id_funcao(codigo)
-        codigo = vl.ler_cod_funcao('Código: ')
-        nome = vl.ler_nome('Nome: ')
-        ConexaoFuncao.editar_funcao(id, Funcao(codigo, nome))
+        nome = vl.ler_nome('Novo Nome: ')
+        ConexaoFuncao.editar_funcao(Funcao(codigo, nome))
         print('\nFunção Editada com Sucesso.')
     else:
         print('Código da Função Não Encontrada!')
@@ -94,13 +92,11 @@ def editar_funcionario():
     cpf = vl.ler_cpf_buscado('\nInforme o CPF do Funcionário a Editar: ')
     print()
     if vl.verificar_cpf(str(cpf)):
-        id = ConexaoFuncionario.id_funcionario(cpf)
-        nome = vl.ler_nome('Nome: ')
-        cpf = vl.ler_cpf()
+        nome = vl.ler_nome('Novo Nome: ')
         funcao = vl.ler_funcao()
         salario = vl.ler_salario()
         telefone = vl.ler_telefone()
-        ConexaoFuncionario.editar_funcionario(id, Funcionario(nome, cpf, funcao, salario, telefone))
+        ConexaoFuncionario.editar_funcionario(Funcionario(nome, cpf, funcao, salario, telefone))
         print('\nFuncionário Editado com Sucesso.')
     else:
         print('CPF Não Encontrada!')
