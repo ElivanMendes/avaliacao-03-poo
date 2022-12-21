@@ -104,11 +104,11 @@ class Validacoes:
     @staticmethod
     def ler_funcao():
         while True:
-            funcao = input('Código da Função: ')
-            if len(funcao) > 5:
+            cod_funcao = input('Código da Função: ')
+            if len(cod_funcao) > 5:
                 print('\nInforme um Código Menor que 5 Caracteres.\n')
                 continue
-            if not Validacoes.verificar_cod(funcao):
+            if not Validacoes.verificar_cod(cod_funcao):
                 print('\nInforme o Código de uma Função Existente.\n')
                 continue
-            return funcao
+            return ConexaoFuncao.id_funcao(cod_funcao)

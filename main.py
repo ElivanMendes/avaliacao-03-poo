@@ -14,8 +14,7 @@ def cadastrar_funcao():
 # Função para Imprimir uma Função. #
 def imprimir_funcao(funcao):
     print('\n==============================')
-    for i in funcao:
-        print('Código: {cod}\nFunção: {nome}'.format(cod=i['cod'], nome=i['nome']))
+    print('Código: {cod}\nFunção: {nome}'.format(cod=funcao['cod'], nome=funcao['nome']))
     print('==============================')
 
 

@@ -40,7 +40,7 @@ class Funcionario:
 
     @property
     def telefone(self):
-        return self.__salario
+        return self.__telefone
 
     @telefone.setter
     def telefone(self, telefone):

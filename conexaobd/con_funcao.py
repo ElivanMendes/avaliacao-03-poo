@@ -25,7 +25,7 @@ class ConexaoFuncao:
             with connection.cursor() as c:
                 sql = "SELECT * FROM `funcao` WHERE `cod` = %s"
                 c.execute(sql, cod_funcao)
-                return c.fetchall()
+                return c.fetchone()
         except Exception as erro:
             print('Erro na Busca do Banco de Dados:', erro)
         finally:
@@ -70,5 +70,19 @@ class ConexaoFuncao:
             connection.commit()
         except Exception as erro:
             print('Erro ao Deletar Banco de Dados:', erro)
+        finally:
+            connection.close()
+
+    # Função para Retorna o Id de uma Função no Banco de Dados. #
+    @staticmethod
+    def id_funcao(cod_funcao):
+        connection = conexao_bd()
+        try:
+            with connection.cursor() as c:
+                sql = "SELECT `id` FROM `funcao` WHERE `cod` = %s"
+                c.execute(sql, cod_funcao)
+                return c.fetchone()['id']
+        except Exception as erro:
+            print('Erro na Busca do Banco de Dados:', erro)
         finally:
             connection.close()
