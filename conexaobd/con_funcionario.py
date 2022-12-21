@@ -72,3 +72,17 @@ class ConexaoFuncionario:
             print('Erro ao Editar Banco de Dados:', erro)
         finally:
             connection.close()
+
+    # Função para Deletar um Funcionário do Banco de Dados. #
+    @staticmethod
+    def deletar_funcionario(cpf):
+        connection = conexao_bd()
+        try:
+            with connection.cursor() as c:
+                sql = "DELETE FROM `funcionario` WHERE `cpf` = %s"
+                c.execute(sql, cpf)
+            connection.commit()
+        except Exception as erro:
+            print('Erro ao Deletar Banco de Dados:', erro)
+        finally:
+            connection.close()

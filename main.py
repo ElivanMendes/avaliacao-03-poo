@@ -101,6 +101,16 @@ def editar_funcionario():
         print('CPF Não Encontrada!')
 
 
+# Função que Deleta um Funcionário no Banco de Dados. #
+def deletar_funcionario():
+    cpf = vl.ler_cpf_buscado('\nInforme o CPF do Funcionário a Deletar: ')
+    if vl.verificar_cpf(str(cpf)):
+        ConexaoFuncionario.deletar_funcionario(cpf)
+        print('\nFuncionário Deletado com Sucesso.')
+    else:
+        print('\nCPF Não Encontrada!')
+
+
 # Menu de Manter Funções. #
 def menu_manter_funcoes():
     while True:
@@ -162,7 +172,10 @@ def menu_manter_funcionario():
             else:
                 print('\nNão há Funcionários Cadastradas!')
         elif opc == 4:
-            pass
+            if ConexaoFuncionario.buscar_cpf_todos_funcionarios():
+                deletar_funcionario()
+            else:
+                print('\nNão há Funcionários Cadastradas!')
         else:
             print('\nOpção Invalida!')
 
