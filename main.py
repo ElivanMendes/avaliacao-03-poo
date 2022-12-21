@@ -62,6 +62,26 @@ def cadastrar_funcionario():
     print('\nCadastro Realizado com Sucesso.')
 
 
+# Função para Imprimir um Funcionário. #
+def imprimir_funcionario(f):
+    print('\n==================================')
+    print('Nome: {}'.format(f['nome']))
+    print('CPF: {}.{}.{}-{}'.format(f['cpf'][:3], f['cpf'][3:6], f['cpf'][6:9], f['cpf'][9:]))
+    print('Função: {}'.format(f['nome_funcao']))
+    print('Salário: R$ {:.2f}'.format(f['salario']).replace('.', ','))
+    print('Telefone: ({}){}-{}'.format(f['telefone'][:2], f['telefone'][2:7], f['telefone'][7:]))
+    print('==================================')
+
+
+# Função para Pesquisar um Funcionário no Banco de Dados. #
+def pesquisar_funcionario():
+    funcionario = ConexaoFuncionario.pesquisar_funcionario(vl.ler_cpf_buscado('\nInforme o CPF Buscado: '))
+    if funcionario:
+        imprimir_funcionario(funcionario)
+    else:
+        print('\nFuncionário Não Encontrado!')
+
+
 # Menu de Manter Funções. #
 def menu_manter_funcoes():
     while True:
@@ -113,7 +133,10 @@ def menu_manter_funcionario():
             else:
                 print('\nNão há Funções Cadastradas! Cadastre uma Função para Cadastrar um Funcionario.')
         elif opc == 2:
-            pass
+            if ConexaoFuncionario.buscar_cpf_todos_funcionarios():
+                pesquisar_funcionario()
+            else:
+                print('\nNão há Funcionários Cadastradas!')
         elif opc == 3:
             pass
         elif opc == 4:

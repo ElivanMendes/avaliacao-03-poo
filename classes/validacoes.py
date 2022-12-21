@@ -1,4 +1,5 @@
 from conexaobd.con_funcao import ConexaoFuncao
+from conexaobd.con_funcionario import ConexaoFuncionario
 
 
 class Validacoes:
@@ -64,9 +65,27 @@ class Validacoes:
                 continue
             try:
                 cpf = int(cpf)
+                if Validacoes.verificar_cpf(str(cpf)):
+                    print('\nCPF já Cadastrado. Informe um CPF Diferente.\n')
+                    continue
                 return cpf
             except ValueError:
                 print('\nInforme Somente Números. Ex.: 64475656400\n')
+                continue
+
+    # Função que Ler e Verificar um CPF Buscado. #
+    @staticmethod
+    def ler_cpf_buscado(msg):
+        while True:
+            cpf = input(msg)
+            if len(cpf) != 11:
+                print('\nInforme um CPF com 11 Digitos. Ex.: 64475656400')
+                continue
+            try:
+                cpf = int(cpf)
+                return cpf
+            except ValueError:
+                print('\nInforme Somente Números. Ex.: 64475656400')
                 continue
 
     # Função que Ler e Verifica um Telefone. #
@@ -112,3 +131,12 @@ class Validacoes:
                 print('\nInforme o Código de uma Função Existente.\n')
                 continue
             return ConexaoFuncao.id_funcao(cod_funcao)
+
+    # Função que Verifica se o Código Informado já Existe no Banco de Dados. #
+    @staticmethod
+    def verificar_cpf(cpf):
+        lista = ConexaoFuncionario.buscar_cpf_todos_funcionarios()
+        for i in lista:
+            if i['cpf'] == cpf:
+                return True
+        return False
