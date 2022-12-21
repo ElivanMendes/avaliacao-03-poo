@@ -1,12 +1,14 @@
 from classes.validacoes import Validacoes as vl
 from classes.funcao import Funcao
+from classes.funcionario import Funcionario
 from conexaobd.con_funcao import ConexaoFuncao
+from conexaobd.con_funcionario import ConexaoFuncionario
 
 
 # Função que Criar uma Instância de Função. E Cadastrar no Banco de Dados. #
 def cadastrar_funcao():
     codigo = vl.ler_cod_funcao()
-    nome = vl.ler_nome()
+    nome = vl.ler_nome('Nome: ')
     ConexaoFuncao.cadastrar_funcao_db(Funcao(codigo, nome))
     print('\nCadastro Realizado com Sucesso.')
 
@@ -32,7 +34,7 @@ def editar_funcao():
     codigo = vl.ler_cod_buscado('\nInforme o Código da Função a Editar: ')
     print()
     if vl.verificar_cod(codigo):
-        nome = vl.ler_nome()
+        nome = vl.ler_nome('Nome: ')
         ConexaoFuncao.editar_funcao(Funcao(codigo, nome))
         print('\nFunção Editada com Sucesso.')
     else:
@@ -47,6 +49,17 @@ def deletar_funcao():
         print('\nFunção Deletada com Sucesso.')
     else:
         print('\nCódigo da Função Não Encontrada!')
+
+
+# Função que Criar uma Instância de Funcionario. E Cadastrar no Banco de Dados. #
+def cadastrar_funcionario():
+    nome = vl.ler_nome('\nNome: ')
+    cpf = vl.ler_cpf()
+    funcao = vl.ler_funcao()
+    salario = vl.ler_salario()
+    telefone = vl.ler_telefone()
+    ConexaoFuncionario.cadastrar_funcionario_db(Funcionario(nome, cpf, funcao, salario, telefone))
+    print('\nCadastro Realizado com Sucesso.')
 
 
 # Menu de Manter Funções. #
@@ -95,7 +108,10 @@ def menu_manter_funcionario():
             print('\nVOLTANDO...')
             return
         elif opc == 1:
-            pass
+            if ConexaoFuncao.buscar_cod_todas_funcao():
+                cadastrar_funcionario()
+            else:
+                print('\nNão há Funções Cadastradas! Cadastre uma Função para Cadastrar um Funcionario.')
         elif opc == 2:
             pass
         elif opc == 3:

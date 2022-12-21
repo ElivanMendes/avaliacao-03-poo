@@ -46,9 +46,9 @@ class Validacoes:
 
     # Função que Ler e Verifica o Tamanho do Nome. #
     @staticmethod
-    def ler_nome():
+    def ler_nome(nome):
         while True:
-            nome = input('Nome: ')
+            nome = input(nome)
             if len(nome) > 50:
                 print('\nInforme um Nome Menor que 50 Caracteres.\n')
                 continue
@@ -60,13 +60,13 @@ class Validacoes:
         while True:
             cpf = input('CPF: ')
             if len(cpf) != 11:
-                print('Informe um CPF com 11 Digitos. Ex.: 64475656400')
+                print('\nInforme um CPF com 11 Digitos. Ex.: 64475656400\n')
                 continue
             try:
                 cpf = int(cpf)
                 return cpf
             except ValueError:
-                print('Informe Somente Números. Ex.: 64475656400')
+                print('\nInforme Somente Números. Ex.: 64475656400\n')
                 continue
 
     # Função que Ler e Verifica um Telefone. #
@@ -75,13 +75,13 @@ class Validacoes:
         while True:
             telefone = input('Telefone: ')
             if len(telefone) != 11:
-                print('Informe um Telefone com 11 Digitos. Ex.: 99981123456')
+                print('\nInforme um Telefone com 11 Digitos. Ex.: 99981123456\n')
                 continue
             try:
                 telefone = int(telefone)
                 return telefone
             except ValueError:
-                print('Informe Somente Números. Ex.: 99981123456')
+                print('\nInforme Somente Números. Ex.: 99981123456\n')
                 continue
 
     # Função que Ler e Verifica um Salário. #
@@ -92,12 +92,12 @@ class Validacoes:
             try:
                 salario = float(salario)
                 if salario < 0:
-                    print('Informe um Salário Positivo.')
+                    print('\nInforme um Salário Positivo.\n')
                     continue
                 else:
                     return salario
             except ValueError:
-                print('Informe um Salário Valido.')
+                print('\nInforme um Salário Valido.\n')
                 continue
 
     # Função que Ler e Verifica uma Função. #
