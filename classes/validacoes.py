@@ -46,10 +46,69 @@ class Validacoes:
 
     # Função que Ler e Verifica o Tamanho do Nome. #
     @staticmethod
-    def ler_nome_funcao():
+    def ler_nome():
         while True:
             nome = input('Nome: ')
             if len(nome) > 50:
                 print('\nInforme um Nome Menor que 50 Caracteres.\n')
                 continue
             return nome
+
+    # Função que Ler e Verificar um CPF. #
+    @staticmethod
+    def ler_cpf():
+        while True:
+            cpf = input('CPF: ')
+            if len(cpf) != 11:
+                print('Informe um CPF com 11 Digitos. Ex.: 64475656400')
+                continue
+            try:
+                cpf = int(cpf)
+                return cpf
+            except ValueError:
+                print('Informe Somente Números. Ex.: 64475656400')
+                continue
+
+    # Função que Ler e Verifica um Telefone. #
+    @staticmethod
+    def ler_telefone():
+        while True:
+            telefone = input('Telefone: ')
+            if len(telefone) != 11:
+                print('Informe um Telefone com 11 Digitos. Ex.: 99981123456')
+                continue
+            try:
+                telefone = int(telefone)
+                return telefone
+            except ValueError:
+                print('Informe Somente Números. Ex.: 99981123456')
+                continue
+
+    # Função que Ler e Verifica um Salário. #
+    @staticmethod
+    def ler_salario():
+        while True:
+            salario = input('Salario: ')
+            try:
+                salario = float(salario)
+                if salario < 0:
+                    print('Informe um Salário Positivo.')
+                    continue
+                else:
+                    return salario
+            except ValueError:
+                print('Informe um Salário Valido.')
+                continue
+
+    # Função que Ler e Verifica uma Função. #
+    @staticmethod
+    def ler_funcao():
+        while True:
+            funcao = input('Código da Função: ')
+            if len(funcao) > 5:
+                print('\nInforme um Código Menor que 5 Caracteres.\n')
+                continue
+            if not Validacoes.verificar_cod(funcao):
+                print('\nInforme o Código de uma Função Existente.\n')
+                continue
+            return funcao

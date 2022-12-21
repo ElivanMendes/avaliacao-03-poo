@@ -6,7 +6,7 @@ from conexaobd.con_funcao import ConexaoFuncao
 # Função que Criar uma Instância de Função. E Cadastrar no Banco de Dados. #
 def cadastrar_funcao():
     codigo = vl.ler_cod_funcao()
-    nome = vl.ler_nome_funcao()
+    nome = vl.ler_nome()
     ConexaoFuncao.cadastrar_funcao_db(Funcao(codigo, nome))
     print('\nCadastro Realizado com Sucesso.')
 
@@ -33,7 +33,7 @@ def editar_funcao():
     codigo = vl.ler_cod_buscado('\nInforme o Código da Função a Editar: ')
     print()
     if vl.verificar_cod(codigo):
-        nome = vl.ler_nome_funcao()
+        nome = vl.ler_nome()
         ConexaoFuncao.editar_funcao(Funcao(codigo, nome))
         print('\nFunção Editada com Sucesso.')
     else:
