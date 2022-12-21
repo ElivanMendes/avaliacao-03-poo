@@ -24,9 +24,9 @@ class Validacoes:
 
     # Função que Ler e Verifica se o Código Cadastrado já Existe no Banco de Dados. #
     @staticmethod
-    def ler_cod_funcao():
+    def ler_cod_funcao(msg):
         while True:
-            cod = input('\nCódigo: ')
+            cod = input(msg)
             if len(cod) > 5:
                 print('\nInforme um Código Menor que 5 Caracteres.')
                 continue
@@ -47,9 +47,9 @@ class Validacoes:
 
     # Função que Ler e Verifica o Tamanho do Nome. #
     @staticmethod
-    def ler_nome(nome):
+    def ler_nome(msg):
         while True:
-            nome = input(nome)
+            nome = input(msg)
             if len(nome) > 50:
                 print('\nInforme um Nome Menor que 50 Caracteres.\n')
                 continue

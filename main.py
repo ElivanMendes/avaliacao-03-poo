@@ -7,7 +7,7 @@ from conexaobd.con_funcionario import ConexaoFuncionario
 
 # Função que Criar uma Instância de Função. E Cadastrar no Banco de Dados. #
 def cadastrar_funcao():
-    codigo = vl.ler_cod_funcao()
+    codigo = vl.ler_cod_funcao('\nCódigo: ')
     nome = vl.ler_nome('Nome: ')
     ConexaoFuncao.cadastrar_funcao_db(Funcao(codigo, nome))
     print('\nCadastro Realizado com Sucesso.')
@@ -34,8 +34,10 @@ def editar_funcao():
     codigo = vl.ler_cod_buscado('\nInforme o Código da Função a Editar: ')
     print()
     if vl.verificar_cod(codigo):
+        id = ConexaoFuncao.id_funcao(codigo)
+        codigo = vl.ler_cod_funcao('Código: ')
         nome = vl.ler_nome('Nome: ')
-        ConexaoFuncao.editar_funcao(Funcao(codigo, nome))
+        ConexaoFuncao.editar_funcao(id, Funcao(codigo, nome))
         print('\nFunção Editada com Sucesso.')
     else:
         print('Código da Função Não Encontrada!')
@@ -80,6 +82,23 @@ def pesquisar_funcionario():
         imprimir_funcionario(funcionario)
     else:
         print('\nFuncionário Não Encontrado!')
+
+
+# Função que Editar um Funcionário no Banco de Dados. #
+def editar_funcionario():
+    cpf = vl.ler_cpf_buscado('\nInforme o CPF do Funcionário a Editar: ')
+    print()
+    if vl.verificar_cpf(str(cpf)):
+        id = ConexaoFuncionario.id_funcionario(cpf)
+        nome = vl.ler_nome('Nome: ')
+        cpf = vl.ler_cpf()
+        funcao = vl.ler_funcao()
+        salario = vl.ler_salario()
+        telefone = vl.ler_telefone()
+        ConexaoFuncionario.editar_funcionario(id, Funcionario(nome, cpf, funcao, salario, telefone))
+        print('\nFuncionário Editado com Sucesso.')
+    else:
+        print('CPF Não Encontrada!')
 
 
 # Menu de Manter Funções. #
@@ -138,7 +157,10 @@ def menu_manter_funcionario():
             else:
                 print('\nNão há Funcionários Cadastradas!')
         elif opc == 3:
-            pass
+            if ConexaoFuncionario.buscar_cpf_todos_funcionarios():
+                editar_funcionario()
+            else:
+                print('\nNão há Funcionários Cadastradas!')
         elif opc == 4:
             pass
         else:

@@ -44,3 +44,31 @@ class ConexaoFuncionario:
             print('Erro na Busca do Banco de Dados:', erro)
         finally:
             connection.close()
+
+    # Função para Retorna o Id de um Funcionario no Banco de Dados. #
+    @staticmethod
+    def id_funcionario(cpf):
+        connection = conexao_bd()
+        try:
+            with connection.cursor() as c:
+                sql = "SELECT `id` FROM `funcionario` WHERE `cpf` = %s"
+                c.execute(sql, cpf)
+                return c.fetchone()['id']
+        except Exception as erro:
+            print('Erro na Busca do Banco de Dados:', erro)
+        finally:
+            connection.close()
+
+    # Função para Editar um Funcionário no Banco de Dados. #
+    @staticmethod
+    def editar_funcionario(id, func):
+        connection = conexao_bd()
+        try:
+            with connection.cursor() as c:
+                sql = "UPDATE `funcionario` SET `cpf` = %s, `nome` = %s, `funcao` = %s, `salario` = %s, `telefone` = %s WHERE `id` = %s"
+                c.execute(sql, (func.cpf, func.nome, func.funcao, func.salario, func.telefone, id))
+            connection.commit()
+        except Exception as erro:
+            print('Erro ao Editar Banco de Dados:', erro)
+        finally:
+            connection.close()
