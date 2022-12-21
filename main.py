@@ -47,6 +47,11 @@ def editar_funcao():
 def deletar_funcao():
     codigo = vl.ler_cod_buscado('\nInforme o Código da Função a Deletar: ')
     if vl.verificar_cod(codigo):
+        try:
+            vl.lancar_excecao(ConexaoFuncao.id_funcao(codigo))
+        except Exception as erro:
+            print(erro)
+            return
         ConexaoFuncao.deletar_funcao(codigo)
         print('\nFunção Deletada com Sucesso.')
     else:

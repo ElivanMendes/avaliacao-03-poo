@@ -140,3 +140,18 @@ class Validacoes:
             if i['cpf'] == cpf:
                 return True
         return False
+
+    # Função que Verifica se Tem Funções Associadas a Funcionários. #
+    @staticmethod
+    def verificar_funcao_associada(id):
+        lista = ConexaoFuncionario.buscar_funcoes_todos_funcionarios()
+        for i in lista:
+            if i['funcao'] == id:
+                return True
+        return False
+
+    # Função que Lanca uma Exceção se Houver uma Função Associada a um Funcionário. #
+    @staticmethod
+    def lancar_excecao(id):
+        if Validacoes.verificar_funcao_associada(id):
+            raise Exception('\nNão é Possivel Deletar uma Função Associada a um Funcionário. Delete Primeiro o Funcionário.')

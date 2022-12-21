@@ -86,3 +86,17 @@ class ConexaoFuncionario:
             print('Erro ao Deletar Banco de Dados:', erro)
         finally:
             connection.close()
+
+    # Função para Pesquisar todas as Funcões no Banco de Dados. #
+    @staticmethod
+    def buscar_funcoes_todos_funcionarios():
+        connection = conexao_bd()
+        try:
+            with connection.cursor() as c:
+                sql = "SELECT `funcao` FROM `funcionario`"
+                c.execute(sql)
+                return c.fetchall()
+        except Exception as erro:
+            print('Erro na Busca do Banco de Dados:', erro)
+        finally:
+            connection.close()
